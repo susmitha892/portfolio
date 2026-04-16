@@ -1,0 +1,730 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thallapally Susmitha — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --accent: #7c6aff;
+    --accent2: #a78bfa;
+    --accent3: #34d399;
+    --text: #f0f0f8;
+    --muted: #8888aa;
+    --muted2: #6060808;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--accent2);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 8rem 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 20% 50%, rgba(124,106,255,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 80% 30%, rgba(52,211,153,0.07) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center;
+    max-width: 1200px; width: 100%;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(124,106,255,0.1);
+    border: 1px solid rgba(124,106,255,0.25);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-size: 0.8rem; font-weight: 500; color: var(--accent2);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero-tag span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent3); display: block; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .hero-name em {
+    font-style: italic; color: var(--accent2);
+    display: block;
+  }
+  .hero-role {
+    font-size: 1.1rem; font-weight: 500; color: var(--accent3);
+    letter-spacing: 0.04em; margin-bottom: 1.5rem;
+  }
+  .hero-summary {
+    font-size: 1rem; color: var(--muted); line-height: 1.8;
+    max-width: 500px; margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff; border: none; cursor: pointer;
+    padding: 0.8rem 2rem; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none; display: inline-block;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border2); cursor: pointer;
+    padding: 0.8rem 2rem; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    text-decoration: none; display: inline-block;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent2); background: rgba(124,106,255,0.06); }
+  .hero-right { display: flex; flex-direction: column; gap: 1.5rem; }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative; overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+  }
+  .stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--accent2); }
+  .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.2rem; }
+  .bridge-card {
+    background: linear-gradient(135deg, rgba(124,106,255,0.08), rgba(52,211,153,0.05));
+    border: 1px solid rgba(124,106,255,0.2);
+    border-radius: 16px; padding: 1.5rem;
+  }
+  .bridge-title { font-size: 0.75rem; color: var(--accent2); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.8rem; font-weight: 600; }
+  .bridge-items { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+  .bridge-pill {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 100px; padding: 0.3rem 0.9rem;
+    font-size: 0.82rem; color: var(--text);
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; color: var(--accent2); letter-spacing: 0.15em;
+    text-transform: uppercase; font-weight: 600; margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-label::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--accent); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700; line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--muted); font-size: 1rem; max-width: 600px; line-height: 1.7; margin-bottom: 3rem; }
+
+  /* EXPERIENCE */
+  /* EXPERIENCE */
+  .exp-list { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 0; 
+    position: relative; 
+  }
+  /* The Vertical Line */
+  .exp-list::before {
+    content: '';
+    position: absolute;
+    left: 200px; /* Aligns with the gap between date and content */
+    top: 2.5rem;
+    bottom: 2.5rem;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent3), transparent);
+    opacity: 0.3;
+  }
+  .exp-item {
+    display: grid; 
+    grid-template-columns: 200px 1fr;
+    gap: 3rem; 
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+  /* The Connecting Dot */
+  .exp-item::after {
+    content: '';
+    position: absolute;
+    left: 200px;
+    top: 2.8rem;
+    width: 9px;
+    height: 9px;
+    background: var(--bg);
+    border: 2px solid var(--accent3);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-date { color: var(--muted); font-size: 0.85rem; font-weight: 500; padding-top: 0.15rem; }
+  .exp-year { display: block; font-size: 0.8rem; color: var(--accent3); margin-top: 0.4rem; }
+  .exp-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .exp-company {
+    font-size: 0.9rem; color: var(--accent2); font-weight: 500; margin-bottom: 1rem;
+  }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .exp-bullets li {
+    padding-left: 1.2rem; position: relative;
+    color: var(--muted); font-size: 0.95rem; line-height: 1.7;
+  }
+  .exp-bullets li::before {
+    content: ''; position: absolute; left: 0; top: 0.65em;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--accent3);
+  }
+
+  /* Responsive adjustment for the line */
+  @media (max-width: 900px) {
+    .exp-list::before, .exp-item::after { display: none; }
+  }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 2rem;
+    transition: transform 0.2s, border-color 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .project-card:hover { transform: translateY(-4px); border-color: var(--border2); }
+  .project-card.featured {
+    grid-column: span 2;
+    background: linear-gradient(135deg, rgba(124,106,255,0.07), rgba(52,211,153,0.04));
+    border-color: rgba(124,106,255,0.2);
+  }
+  .project-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 1.2rem;
+  }
+  .project-icon.purple { background: rgba(124,106,255,0.15); }
+  .project-icon.green { background: rgba(52,211,153,0.15); }
+  .project-icon.blue { background: rgba(96,165,250,0.15); }
+  .project-icon.amber { background: rgba(251,191,36,0.15); }
+  .project-icon.pink { background: rgba(244,114,182,0.15); }
+  .project-icon.teal { background: rgba(45,212,191,0.15); }
+  .project-badge {
+    display: inline-block; font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.2rem 0.7rem; border-radius: 100px;
+    margin-bottom: 0.8rem;
+  }
+  .project-badge.flagship { background: rgba(124,106,255,0.15); color: var(--accent2); border: 1px solid rgba(124,106,255,0.3); }
+  .project-badge.cv { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.25); }
+  .project-badge.ai { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.25); }
+  .project-badge.health { background: rgba(244,114,182,0.12); color: #f472b6; border: 1px solid rgba(244,114,182,0.25); }
+  .project-name { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.7rem; }
+  .project-desc { color: var(--muted); font-size: 0.92rem; line-height: 1.75; margin-bottom: 1.2rem; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tech-tag {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 6px; padding: 0.2rem 0.6rem;
+    font-size: 0.75rem; color: var(--muted);
+    font-family: 'DM Sans', monospace;
+  }
+  .project-highlights { display: flex; flex-direction: column; gap: 0.5rem; margin: 1rem 0; }
+  .highlight-item { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.88rem; color: var(--muted); }
+  .highlight-item::before { content: '✦'; color: var(--accent3); font-size: 0.65rem; margin-top: 0.35em; flex-shrink: 0; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+  .skill-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem;
+  }
+  .skill-group-title {
+    font-size: 0.8rem; color: var(--accent2);
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+    margin-bottom: 1rem; padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-items { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.35rem 0.8rem;
+    font-size: 0.85rem; color: var(--text);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .skill-item:hover { background: rgba(124,106,255,0.1); border-color: rgba(124,106,255,0.3); }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 2rem; position: relative; overflow: hidden;
+  }
+  .edu-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .edu-degree { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .edu-school { color: var(--accent2); font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .edu-year { color: var(--muted); font-size: 0.82rem; margin-bottom: 1rem; }
+  .edu-score {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.2);
+    border-radius: 100px; padding: 0.3rem 0.9rem;
+    font-size: 0.82rem; font-weight: 600; color: var(--accent3);
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px; padding: 4rem;
+    text-align: center;
+    position: relative; overflow: hidden;
+    margin: 0 4rem 6rem;
+  }
+  .contact-section::before {
+    content: '';
+    position: absolute; top: -50%; left: -20%; right: -20%;
+    height: 200%;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(124,106,255,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .contact-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+  .contact-sub { color: var(--muted); font-size: 1rem; margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .contact-links { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border2);
+    border-radius: 12px; padding: 0.8rem 1.5rem;
+    color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  }
+  .contact-link:hover { background: rgba(124,106,255,0.1); border-color: rgba(124,106,255,0.3); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 0.82rem;
+  }
+
+  /* DIVIDER */
+  .full-section { max-width: 100%; padding: 6rem 4rem; }
+  .inner { max-width: 1200px; margin: 0 auto; }
+
+  /* FADE IN */
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 6rem 1.5rem 4rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    section { padding: 4rem 1.5rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .project-card.featured { grid-column: span 1; }
+    .contact-section { margin: 0 1.5rem 4rem; padding: 2.5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">T. Susmitha</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about" style="max-width:100%; padding-left:4rem; padding-right:4rem;">
+  <div class="hero-bg"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-tag"><span></span>Open to Opportunities</div>
+      <h1 class="hero-name">
+        Thallapally
+        <em>Susmitha</em>
+      </h1>
+      <p class="hero-role">Python Developer · AI &amp; Health Informatics</p>
+      <p class="hero-summary">
+        A clinical physiotherapist who made the rare leap into AI engineering. I build intelligent health systems — voice agents, AI knee exercise analyzer, EHR tools ,Specializing in the synergy between clinical workflows and health informatics to drive digital transformation in hospital environments.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-card">
+        <div class="stat-row">
+          <div class="stat-item">
+            <div class="stat-num">6+</div>
+            <div class="stat-label">AI Projects</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">9.42</div>
+            <div class="stat-label">CGPA</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">2+</div>
+            <div class="stat-label">Years Clinical experience</div>
+          </div>
+        </div>
+      </div>
+      <div class="bridge-card">
+        <div class="bridge-title">The bridge I build</div>
+        <div class="bridge-items">
+          <span class="bridge-pill">Clinical Insight</span>
+          <span class="bridge-pill">Computer Vision</span>
+          <span class="bridge-pill">AI Agents</span>
+          <span class="bridge-pill">Health Informatics</span>
+          <span class="bridge-pill">EHR Systems</span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="fade-up">
+  <div class="section-label">Career</div>
+  <h2 class="section-title">Professional Journey</h2>
+  <p class="section-sub">Leveraging a foundational background in clinical physiotherapy to develop data-driven healthcare solutions. By synthesizing clinical expertise with Python-based development, I build tools that translate complex medical workflows into actionable hospital outcomes and optimized patient care.</p>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Python Developer Intern</div>
+        <span class="exp-year">2025 – 2026</span>
+      </div>
+      <div>
+        <div class="exp-title">Apollo Hospitals</div>
+        <div class="exp-company">Jubilee Hills, Hyderabad</div>
+        <ul class="exp-bullets">
+          <li>Engineered an interactive AI-driven voice agent featuring facial recognition and real-time dynamic lip-sync avatar technology — deployed across multiple hospital departments for automated patient-facing interactions.</li>
+          <li>Built automated ticketing workflows for non-clinical service requests, significantly reducing manual administrative overhead and response time across departments.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Physiotherapist</div>
+        <span class="exp-year">2023 – 2024</span>
+      </div>
+      <div>
+        <div class="exp-title">Samadhan Goyam Child Development Center</div>
+        <div class="exp-company">Hyderabad</div>
+        <ul class="exp-bullets">
+          <li>Designed and implemented tailored developmental therapy programs for pediatric patients with special needs, achieving measurable improvements in motor and cognitive function.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Physiotherapist</div>
+        <span class="exp-year">2022 – 2023</span>
+      </div>
+      <div>
+        <div class="exp-title">Indo British Advanced Pain Clinic</div>
+        <div class="exp-company">Hyderabad</div>
+        <ul class="exp-bullets">
+          <li>Delivered targeted patient care via structured strengthening and self-mobilization protocols, ensuring comprehensive and evidence-based rehabilitation plans.</li>
+          <li>Maintained accurate electronic health record (EHR) documentation — a practice that later informed my AI-driven EHR development work.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="fade-up" style="max-width: 100%; padding: 6rem 4rem;">
+  <div class="inner">
+  <div class="section-label">Work</div>
+  <h2 class="section-title">Key Projects</h2>
+  <p class="section-sub">Applications at the intersection of clinical domain expertise and modern AI engineering.</p>
+
+  <div class="projects-grid">
+
+    <!-- Smart Face Recognition — FEATURED -->
+    <div class="project-card featured">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        
+        <span class="project-badge flagship">Computer Vision</span>
+      </div>
+      <div class="project-name">Smart Face Recognition System</div>
+      <div class="project-desc">
+        A production-grade, multi-camera biometric attendance platform face detector and  recognizer. The system streams RTSP feeds from multiple cameras simultaneously, identifying enrolled employees in real-time — even at distance — and automatically logging attendance to a PostgreSQL database without any manual intervention.
+      </div>
+      
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">FastAPI</span>
+        <span class="tech-tag">OpenCV</span>
+        
+        <span class="tech-tag">PostgreSQL</span>
+        <span class="tech-tag">RTSP</span>
+        <span class="tech-tag">Jinja2</span>
+        <span class="tech-tag">Tailwind CSS</span>
+      </div>
+    </div>
+
+    <!-- AI Knee Joint Analyzer — FEATURED -->
+    <div class="project-card featured">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <span class="project-badge cv">Pose Estimation</span>
+      </div>
+      <div class="project-name">AI Knee Joint Analyzer</div>
+      <div class="project-desc">
+         Built by a practising physiotherapist, the system detects joint angles, counts repetitions intelligently, and delivers live color-coded feedback — bringing clinical-grade exercise coaching into the home.
+      </div>
+      
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Flask</span>
+        <span class="tech-tag">MediaPipe</span>
+        <span class="tech-tag">OpenCV</span>
+        <span class="tech-tag">NumPy</span>
+        <span class="tech-tag">Computer Vision</span>
+        <span class="tech-tag">Pose Estimation</span>
+      </div>
+    </div>
+
+    <!-- Psychiatry EHR -->
+    <div class="project-card">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        
+        <span class="project-badge ai">AI + EHR</span>
+      </div>
+      <div class="project-name">Psychiatry EHR System</div>
+      <div class="project-desc">End-to-end psychiatric electronic health record with AI-assisted diagnostics, an advanced analytics dashboard, and an integrated patient chatbot for interactive case management.</div>
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">LLM</span>
+        <span class="tech-tag">RAG</span>
+        <span class="tech-tag">SQL</span>
+      </div>
+    </div>
+
+    <!-- Avatar Lip Sync -->
+    <div class="project-card">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        
+        <span class="project-badge flagship">Multimodal AI</span>
+      </div>
+      <div class="project-name">Multimodal Avatar Lip Sync</div>
+      <div class="project-desc">Autonomous AI avatar that fetches live database data, generates dashboards, and delivers data-driven presentations — replacing manual data delivery in hospital workflows.</div>
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Agentic AI</span>
+        <span class="tech-tag">Lip Sync</span>
+        
+      </div>
+    </div>
+
+    <!-- Voice Assistant -->
+    <div class="project-card">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        
+        <span class="project-badge ai">Voice AI</span>
+      </div>
+      <div class="project-name">AI Voice Assistant</div>
+      <div class="project-desc">Multi-departmental hospital voice agent that automates ticketing and service routing for non-clinical requests.</div>
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">LLM</span>
+        <span class="tech-tag">Agentic AI</span>
+        <span class="tech-tag">FastAPI</span>
+      </div>
+    </div>
+
+    <!-- Physio Web App -->
+    <div class="project-card">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        
+        <span class="project-badge health">Physiotherapy</span>
+      </div>
+      <div class="project-name">Physiotherapy Exercise Web App</div>
+      <div class="project-desc">Web application for pain-based exercise recommendation, patient progress tracking, and data-driven rehabilitation insights.</div>
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">HTML</span>
+        <span class="tech-tag">SQL</span>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="fade-up">
+  <div class="section-label">Expertise</div>
+  <h2 class="section-title">Technical Skills</h2>
+  <p class="section-sub">A cross-disciplinary toolkit spanning AI engineering, clinical informatics, and full-stack development.</p>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Languages &amp; Tools</div>
+      <div class="skill-items">
+        <span class="skill-item">Python</span>
+        <span class="skill-item">SQL</span>
+        <span class="skill-item">HTML</span>
+        <span class="skill-item">Power BI</span>
+        
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">AI &amp; Machine Learning</div>
+      <div class="skill-items">
+        <span class="skill-item">LLM</span>
+        <span class="skill-item">Agentic AI</span>
+        <span class="skill-item">RAG</span>
+        
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Clinical Expertise</div>
+      <div class="skill-items">
+        <span class="skill-item">Patient Assessment</span>
+        <span class="skill-item">Treatment Planning</span>
+        <span class="skill-item">EHR Systems</span>
+        <span class="skill-item">Rehabilitation</span>
+        
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Certifications</div>
+      <div class="skill-items">
+        <span class="skill-item">Power BI (Beginner)</span>
+        <span class="skill-item">Python Programming</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="fade-up">
+  <div class="section-label">Education</div>
+  <h2 class="section-title">Academic Background</h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-degree">M.Sc. Health Informatics &amp; Analytics</div>
+      <div class="edu-school">The Apollo University, Chittoor, Andhra Pradesh</div>
+      <div class="edu-year">2024 – 2026</div>
+      <span class="edu-score">⭐ CGPA: 9.42 / 10</span>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Bachelor of Physiotherapy (BPT)</div>
+      <div class="edu-school">Pragathi College of Physiotherapy, Nizamabad, Telangana</div>
+      <div class="edu-year">2017 – 2022</div>
+      <span class="edu-score">📋 Score: 60.62%</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section fade-up" id="contact">
+  <h2 class="contact-title">Let's Build Something</h2>
+  <p class="contact-sub">I'm actively looking for roles where clinical insight and AI engineering meet. Let's talk.</p>
+  <div class="contact-links">
+    <a href="mailto:sushmithathallapelli892@gmail.com" class="contact-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      sushmithathallapelli892@gmail.com
+    </a>
+    <a href="tel:+919849993650" class="contact-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.97a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      +91 98499 93650
+    </a>
+    <a href="https://www.linkedin.com/in/thallapally-susmitha" target="_blank" class="contact-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/susmitha892" target="_blank" class="contact-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+      GitHub
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>Thallapally Susmitha · Hyderabad, Telangana · Designed &amp; Built with passion</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
